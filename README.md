@@ -7,7 +7,7 @@
 # Installation
 
 ```
-pip install XXXXX
+pip install https://github.com/meghanabhange/litNER/releases/download/0.1/en_litner-0.1.tar.gz
 ```
 
 # What is this?
