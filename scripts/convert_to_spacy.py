@@ -23,19 +23,29 @@ def convert(out_file: Path, files: list):
     output_filename = out_file
     LOGGER.info(f"Saving in {output_filename}")
     test_output = []
-    for f in files:
-        text = (dev/f"{f.name[:-4]}.txt").open("r").read()
-        entity_mapping = [text]
-        annot = f.open("r").readlines()
+    for f in annf:
+        text = (datapath/f"{f.name[:-4]}.txt").open("r").read()
+        for line in text.split("\n"):
+        entity_mapping = [line]
+        annot = f.open("r").read().split("\n")
         annot = [ant.split() for ant in annot]
+        curr_start = 0
+        curr_end = 0
         entities = []
         for ant in annot:
-            entity = ant[1]
-            if not (entity[:3] == "Has") and not (entity[:2] == "Is") and entity not in ("AnnotatorNotes", "QuantityQualifier", "Qualifies"):
-            ent_text = ant[4:]
-            entities.append({
-                " ".join(ent_text) : entity
-            })
+            if len(ant)>5:
+                entity = ant[1]
+                start = ant[2]
+                end = ant[3]
+                ent_text = " ".join(ant[4:])
+                if int(start) >= curr_end and line.find(ent_text)!=-1: 
+                d = {
+                    ent_text : entity
+                }
+                if d not in entities: 
+                    entities.append(d)
+                curr_end = int(end)
+                curr_start = int(start)
         entity_mapping.append({
             "entities" : entities
         })
