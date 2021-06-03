@@ -1,4 +1,5 @@
-# LitNER : Literature NER based on litbank
+# LitNER : Literature NER based on litbank 
+[![Built with spaCy](https://img.shields.io/badge/made%20with%20❤%20and-spaCy-09a3d5.svg)](https://spacy.io)
 
 ### Installation 
 
