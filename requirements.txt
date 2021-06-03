@@ -1,0 +1,4 @@
+spacy
+spacy_transformers
+sentencepiece
+protobuf
